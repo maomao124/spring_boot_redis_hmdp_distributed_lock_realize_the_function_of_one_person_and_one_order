@@ -47,3 +47,14 @@
 2022-05-17 12:58:58.651  INFO 2172 --- [restartedMain] unctionOfOnePersonAndOneOrderApplication : Started SpringBootRedisHmdpDistributedLockRealizeTheFunctionOfOnePersonAndOneOrderApplication in 2.624 seconds (JVM running for 3.176)
 2022-05-17 12:59:00.503  INFO 2172 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
 2022-05-17 12:59:00.504  INFO 2172 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2022-05-17 13:21:00.907  INFO 2296 --- [main] onOfOnePersonAndOneOrderApplicationTests : Starting SpringBootRedisHmdpDistributedLockRealizeTheFunctionOfOnePersonAndOneOrderApplicationTests using Java 16.0.2 on mao with PID 2296 (started by mao in H:\程序\大三下期\spring_boot_redis_hmdp基于分布式锁实现一人一单功能)
+2022-05-17 13:21:00.909 DEBUG 2296 --- [main] onOfOnePersonAndOneOrderApplicationTests : Running with Spring Boot v2.6.7, Spring v5.3.19
+2022-05-17 13:21:00.910  INFO 2296 --- [main] onOfOnePersonAndOneOrderApplicationTests : The following 1 profile is active: "dev"
+2022-05-17 13:21:01.680  INFO 2296 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-17 13:21:01.685  INFO 2296 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-05-17 13:21:01.720  INFO 2296 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 0 Redis repository interfaces.
+2022-05-17 13:21:02.699  INFO 2296 --- [main] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-05-17 13:21:02.991  INFO 2296 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-05-17 13:21:05.485  INFO 2296 --- [main] onOfOnePersonAndOneOrderApplicationTests : Started SpringBootRedisHmdpDistributedLockRealizeTheFunctionOfOnePersonAndOneOrderApplicationTests in 5.004 seconds (JVM running for 5.914)
+2022-05-17 13:21:06.084  INFO 2296 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2022-05-17 13:21:06.087  INFO 2296 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
