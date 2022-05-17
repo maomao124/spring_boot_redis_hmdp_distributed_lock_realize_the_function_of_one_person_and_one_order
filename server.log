@@ -27,3 +27,23 @@
 2022-05-17 12:57:14.306 DEBUG 12296 --- [http-nio-8081-exec-4] m.s.m.SeckillVoucherMapper.selectById    : <==      Total: 1
 2022-05-17 12:58:03.853  INFO 12296 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
 2022-05-17 12:58:03.855  INFO 12296 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2022-05-17 12:58:56.355  INFO 2172 --- [restartedMain] unctionOfOnePersonAndOneOrderApplication : Starting SpringBootRedisHmdpDistributedLockRealizeTheFunctionOfOnePersonAndOneOrderApplication using Java 16.0.2 on mao with PID 2172 (H:\程序\大三下期\spring_boot_redis_hmdp基于分布式锁实现一人一单功能\target\classes started by mao in H:\程序\大三下期\spring_boot_redis_hmdp基于分布式锁实现一人一单功能)
+2022-05-17 12:58:56.356 DEBUG 2172 --- [restartedMain] unctionOfOnePersonAndOneOrderApplication : Running with Spring Boot v2.6.7, Spring v5.3.19
+2022-05-17 12:58:56.356  INFO 2172 --- [restartedMain] unctionOfOnePersonAndOneOrderApplication : The following 1 profile is active: "dev"
+2022-05-17 12:58:56.390  INFO 2172 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-17 12:58:56.391  INFO 2172 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-17 12:58:56.904  INFO 2172 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-17 12:58:56.906  INFO 2172 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-05-17 12:58:56.927  INFO 2172 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+2022-05-17 12:58:57.374  INFO 2172 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2022-05-17 12:58:57.381  INFO 2172 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-05-17 12:58:57.382  INFO 2172 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-05-17 12:58:57.447  INFO 2172 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-05-17 12:58:57.447  INFO 2172 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1056 ms
+2022-05-17 12:58:57.664  INFO 2172 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-05-17 12:58:57.755  INFO 2172 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-05-17 12:58:58.591  INFO 2172 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-05-17 12:58:58.640  INFO 2172 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2022-05-17 12:58:58.651  INFO 2172 --- [restartedMain] unctionOfOnePersonAndOneOrderApplication : Started SpringBootRedisHmdpDistributedLockRealizeTheFunctionOfOnePersonAndOneOrderApplication in 2.624 seconds (JVM running for 3.176)
+2022-05-17 12:59:00.503  INFO 2172 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2022-05-17 12:59:00.504  INFO 2172 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
