@@ -1,5 +1,6 @@
 package mao.spring_boot_redis_hmdp.utils;
 
+import cn.hutool.core.lang.UUID;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +30,9 @@ public class RedisLockImpl implements RedisLock
      * StringRedisTemplate
      */
     private StringRedisTemplate stringRedisTemplate;
+
+    private static final String ID_PREFIX = UUID.randomUUID().toString(true) + "-";
+
 
     /**
      * 锁前缀
@@ -64,9 +68,17 @@ public class RedisLockImpl implements RedisLock
     @Override
     public void unlock()
     {
+        // 获取线程标识
+        String threadID = ID_PREFIX + Thread.currentThread().getId();
         //锁key
         String lockKey = KEY_PREFIX + name;
-        //释放
-        stringRedisTemplate.delete(lockKey);
+        // 获取锁中的标识
+        String id = stringRedisTemplate.opsForValue().get(lockKey);
+        //判断锁是否是自己的，通过线程id来判断
+        if (threadID.equals(id))
+        {
+            //释放
+            stringRedisTemplate.delete(lockKey);
+        }
     }
 }
