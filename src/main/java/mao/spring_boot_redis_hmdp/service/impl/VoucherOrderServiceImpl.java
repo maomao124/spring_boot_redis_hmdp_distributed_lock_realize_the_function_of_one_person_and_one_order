@@ -10,6 +10,9 @@ import mao.spring_boot_redis_hmdp.mapper.VoucherOrderMapper;
 import mao.spring_boot_redis_hmdp.service.ISeckillVoucherService;
 import mao.spring_boot_redis_hmdp.service.IVoucherOrderService;
 import mao.spring_boot_redis_hmdp.utils.RedisIDGenerator;
+import mao.spring_boot_redis_hmdp.utils.RedisLock;
+import mao.spring_boot_redis_hmdp.utils.RedisLockImpl;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +28,9 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
 
     @Resource
     private RedisIDGenerator redisIDGenerator;
+
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
 
     @Override
     public Result seckillVoucher(Long voucherId)
@@ -73,7 +79,19 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
         //Long userID = UserHolder.getUser().getId();
         Long userID = 5L;
         //todo:记得更改回来
-        synchronized (userID.toString().intern())
+        //创建锁对象
+        RedisLock redisLock = new RedisLockImpl("order:" + userID, stringRedisTemplate);
+        //取得锁
+        boolean isLock = redisLock.tryLock(500);
+        //判断
+        if (!isLock)
+        {
+            return Result.fail("不允许重复下单！");
+        }
+
+        //获取锁成功
+        //synchronized (userID.toString().intern())
+        try
         {
             //查询数据库
             Long count = this.query().eq("user_id", userID).eq("voucher_id", voucherId).count();
@@ -106,6 +124,11 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
             this.save(voucherOrder);
             //返回
             return Result.ok(orderID);
+        }
+        finally
+        {
+            //释放锁
+            redisLock.unlock();
         }
     }
 }
