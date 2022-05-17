@@ -82,7 +82,7 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
         //创建锁对象
         RedisLock redisLock = new RedisLockImpl("order:" + userID, stringRedisTemplate);
         //取得锁
-        boolean isLock = redisLock.tryLock(500);
+        boolean isLock = redisLock.tryLock(1500);
         //判断
         if (!isLock)
         {

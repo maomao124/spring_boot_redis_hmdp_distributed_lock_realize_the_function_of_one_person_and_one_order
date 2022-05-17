@@ -1,9 +1,13 @@
 package mao.spring_boot_redis_hmdp.utils;
 
 import cn.hutool.core.lang.UUID;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,20 +23,31 @@ import java.util.concurrent.TimeUnit;
  * Description(描述)： 简单分布式锁，非单例
  */
 
-
+@Slf4j
 public class RedisLockImpl implements RedisLock
 {
     /**
      * 锁的名称
      */
-    private String name;
+    private final String name;
     /**
      * StringRedisTemplate
      */
-    private StringRedisTemplate stringRedisTemplate;
+    private final StringRedisTemplate stringRedisTemplate;
 
     private static final String ID_PREFIX = UUID.randomUUID().toString(true) + "-";
 
+    private static final DefaultRedisScript<Long> UNLOCK_SCRIPT;
+
+    static
+    {
+        //创建对象
+        UNLOCK_SCRIPT = new DefaultRedisScript<>();
+        //加载类路径下的资源
+        UNLOCK_SCRIPT.setLocation(new ClassPathResource("unlock.lua"));
+        //设置返回值的类型
+        UNLOCK_SCRIPT.setResultType(Long.class);
+    }
 
     /**
      * 锁前缀
@@ -72,13 +87,22 @@ public class RedisLockImpl implements RedisLock
         String threadID = ID_PREFIX + Thread.currentThread().getId();
         //锁key
         String lockKey = KEY_PREFIX + name;
-        // 获取锁中的标识
+
+        /*// 获取锁中的标识
         String id = stringRedisTemplate.opsForValue().get(lockKey);
         //判断锁是否是自己的，通过线程id来判断
         if (threadID.equals(id))
         {
             //释放
             stringRedisTemplate.delete(lockKey);
+        }*/
+
+        //执行lua脚本
+        Long result = stringRedisTemplate.execute(UNLOCK_SCRIPT, Collections.singletonList(lockKey), threadID);
+        if (result == null || result == 0)
+        {
+            //释放到了别人的锁
+            log.debug("释放锁异常");
         }
     }
 }
